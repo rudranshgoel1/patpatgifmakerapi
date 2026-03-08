@@ -1,0 +1,11 @@
+{
+    "name": "petpet-api",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "dependencies": {
+        "@napi-rs/canvas": "^0.1.44",
+        "gifencoder": "^2.0.1",
+        "node-fetch": "^3.3.2"
+    }
+}
