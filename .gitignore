@@ -1,2 +1,4 @@
 .env
 .wakatime-project
+node_modules
+.vercel
