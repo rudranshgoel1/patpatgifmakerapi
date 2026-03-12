@@ -94,7 +94,7 @@ async function renderFrame(spriteRgba, spriteW, spriteH, frame, g) {
     scaledSprite = flipped;
   }
 
-  const canvas = Buffer.alloc(OUT_SIZE * OUT_SIZE * 4, 255);
+  const canvas = Buffer.alloc(OUT_SIZE * OUT_SIZE * 4, 0);
 
   for (let row = 0; row < dh; row++) {
     const cy = cf.dy + row;
@@ -143,7 +143,7 @@ async function makePetpetGif(imageBuffer, opts = {}) {
     .toBuffer({ resolveWithObject: true });
 
   const spriteWidth  = 112;
-  const spriteHeight = Math.max(1, ~~(spriteWidth * (info.height / info.width)));
+  const spriteHeight = 112;
 
   const g = {
     ...DEFAULTS,
