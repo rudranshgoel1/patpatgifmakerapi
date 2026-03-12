@@ -131,6 +131,15 @@ async function renderFrame(spriteRgba, spriteW, spriteH, frame, g) {
     }
   }
 
+  for (let i = 0; i < OUT_SIZE * OUT_SIZE * 4; i++) {
+    if (canvas[i * 4 + 3] === 0) {
+      canvas[i * 4] = 1;
+      canvas[i * 4 + 1] = 1;
+      canvas[i * 4 + 2] = 1;
+      canvas[i * 4 + 3] = 0;
+    }
+  }
+
   return canvas;
 }
 
@@ -157,11 +166,13 @@ async function makePetpetGif(imageBuffer, opts = {}) {
     spriteHeight,
   };
 
-  const encoder = new GIFEncoder(OUT_SIZE, OUT_SIZE, "neuquant", true);
+  const encoder = new GIFEncoder(OUT_SIZE, OUT_SIZE, "octree", true);
   encoder.setDelay(g.delay);
   encoder.setRepeat(0);
   encoder.setQuality(10);
   encoder.start();
+
+  encoder.setTransparent(0x010101);
 
   for (let frame = 0; frame <= MAX_FRAME; frame++) {
     const rgba = await renderFrame(data, info.width, info.height, frame, g);
